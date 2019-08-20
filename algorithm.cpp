@@ -8,9 +8,10 @@
 #include <unistd.h>
 
 
+//6, 12, 30, 102, 300, 600, 900
 
-#define MATSIZE 99
-#define PROC_NUM 3
+#define MATSIZE 1000
+#define PROC_NUM 4
 
 using namespace std;
 
@@ -22,22 +23,7 @@ int c_arr[MATSIZE*MATSIZE];
 int C_fin[MATSIZE][MATSIZE];
 
 
-void zapisz(int i_c, int j_c) {
-    std::ofstream outFile;
-    std::string nazwa_pliku_txt = "";
-    nazwa_pliku_txt += std::to_string(i_c);
-    nazwa_pliku_txt += std::to_string(j_c);
-    nazwa_pliku_txt += ".txt";
 
-    outFile.open(nazwa_pliku_txt);
-    for (int z = 0; z < MATSIZE; z++) {
-        for (int k = 0; k < MATSIZE; k++) {
-            outFile << C[z][k] << " ";
-        }
-        outFile << endl;
-    }
-    outFile.close();
-}
 
 void loadC() {
     std::fstream cfile("csmall.txt", std::ios_base::in);
@@ -114,7 +100,6 @@ int main(int argc, char *argv[]) {
 
 
         if (numer_procesu == 0) {
-             start = MPI_Wtime();
 
             std::fstream afile("asmall.txt", std::ios_base::in);
             std::fstream bfile("bsmall.txt", std::ios_base::in);
@@ -148,7 +133,7 @@ int main(int argc, char *argv[]) {
 
             afile.close();
             bfile.close();
-
+	    start = MPI_Wtime();
             int counter_row = 0;
             int counter_col = 0;
             int starting_point = 1;
@@ -313,18 +298,18 @@ int main(int argc, char *argv[]) {
 
         if (numer_procesu == 0) {
             stop = MPI_Wtime();
-            // printA();
-            // printf("-------\n");
-            // printB();
-            // printf("-------\n");
-            // for (int i = 0; i < MATSIZE; i++) {
-            //     for (int j = 0; j < MATSIZE; j++) {
-            //         printf("%d ", C_fin[i][j]);
-            //     }
-            //     printf("\n");
-            // }
+ //            printA();
+   //          printf("-------\n");
+     //        printB();
+       //      printf("-------\n");
+             for (int i = 0; i < MATSIZE; i++) {
+                 for (int j = 0; j < MATSIZE; j++) {
+                     printf("%d ", C_fin[i][j]);
+                 }
+                 printf("\n");
+             }
 
-            // printf("\n");
+             printf("\n");
             printf("%f\n", stop-start);
         }
 

@@ -10,15 +10,15 @@
 
 //6, 12, 30, 102, 300, 600, 900
 
-#define MATSIZE 1000
-#define PROC_NUM 4
+#define MATSIZE 999
+#define PROC_NUM 3
 
 using namespace std;
 
 
-int A[500][500];
-int B[500][500];
-int C[500][500];
+int A[3000][3000];
+int B[3000][3000];
+int C[3000][3000];
 int c_arr[MATSIZE*MATSIZE];
 int C_fin[MATSIZE][MATSIZE];
 
@@ -49,7 +49,7 @@ void printA() {
         for (int j = 0; j < MATSIZE; j++) {
             printf("%d ", A[i][j]);
         }
-        printf("\n\n\n\n");
+        printf("\n");
     }
 }
 
@@ -58,7 +58,7 @@ void printB() {
         for (int j = 0; j < MATSIZE; j++) {
             printf("%d ", B[i][j]);
         }
-        printf("\n\n\n\n");
+        printf("\n");
     }
 }
 
@@ -168,9 +168,9 @@ int main(int argc, char *argv[]) {
                     z++;
                 }
             }
-            // printA();
+            //printA();
             // printf("\n");
-            // printB();
+             printB();
             //sendA
             for (int i = 1; i <= PROC_NUM*PROC_NUM; i++) {
                 int temp_starting_point = starting_point;
@@ -298,19 +298,19 @@ int main(int argc, char *argv[]) {
 
         if (numer_procesu == 0) {
             stop = MPI_Wtime();
- //            printA();
+//             printA();
    //          printf("-------\n");
-     //        printB();
+        //     printB();
        //      printf("-------\n");
-             for (int i = 0; i < MATSIZE; i++) {
+             /*for (int i = 0; i < MATSIZE; i++) {
                  for (int j = 0; j < MATSIZE; j++) {
-                     printf("%d ", C_fin[i][j]);
+                    printf("%d ", C_fin[i][j]);
                  }
                  printf("\n");
-             }
+             }*/
 
-             printf("\n");
-            printf("%f\n", stop-start);
+//             printf("\n");
+ //           printf("%f\n", stop-start);
         }
 
 

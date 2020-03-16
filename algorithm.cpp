@@ -219,7 +219,6 @@ int main(int argc, char *argv[]) {
                 for (int j = 0; j < division; j++) {
                     int sum = 0;
                     for (int k = 0; k < division; k++) {
-                        // sum += A[i][k]*B[k][j];
                         sum += buffora[i*division+k] * bufforb[k*division+j];
                     }
                     C[i+((((numer_procesu-1)%(PROC_NUM*PROC_NUM))%PROC_NUM)*division)][j+((((numer_procesu-1)%(PROC_NUM*PROC_NUM))/PROC_NUM)*division)] = sum;
